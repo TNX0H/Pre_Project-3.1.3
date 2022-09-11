@@ -14,7 +14,6 @@ public class RoleServiceImpl implements RoleService{
 
     public RoleServiceImpl(RoleDAO roleDAO) {
         this.roleDAO = roleDAO;
-        addDefaultRole();
     }
 
     @Override
@@ -23,8 +22,8 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public void addRole(Role role) {
-        roleDAO.addRole(role);
+    public Role addRole(String userRole) {
+        return roleDAO.addRole(userRole);
 
     }
 
@@ -38,9 +37,4 @@ public class RoleServiceImpl implements RoleService{
         return roleDAO.findByIdRoles(roles);
     }
 
-    @Override
-    public void addDefaultRole() {
-        addRole(new Role(1L, "ROLE_USER"));
-        addRole(new Role(2L, "ROLE_ADMIN"));
-    }
 }

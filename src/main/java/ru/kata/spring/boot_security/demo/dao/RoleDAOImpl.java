@@ -23,10 +23,10 @@ public class RoleDAOImpl implements RoleDAO{
 
     @Override
     @Transactional
-    public void addRole(Role role) {
-        entityManager.persist(role);
+    public Role addRole(String userRole) {
+        return entityManager.createQuery("select r from Role r where r.userRole =: userRole", Role.class)
+                .setParameter("userRole", userRole).getSingleResult();
     }
-
     @Override
     public Role findById(long id) {
         return entityManager.find(Role.class,id);
